@@ -1,0 +1,10 @@
+---
+layout: post
+title: Integrating Hibernate Validation in Spring Boot for Advanced Parameter Validation — Hibernate…
+tag:
+- spring-boot
+- hibernate
+- java
+---
+
+<h3>Integrating Hibernate Validation in Spring Boot for Advanced Parameter Validation — Hibernate Validation Modes</h3><p>Hibernate Validator offers two primary validation modes: <strong>normal mode</strong> and <strong>fail-fast mode</strong>.</p><ul><li><strong>Normal Mode (Default)</strong>: Validates all fields and returns all error messages.</li><li><strong>Fail-Fast Mode</strong>: Immediately returns the first validation failure encountered.</li></ul><h4>Configuration:</h4><p>To configure the fail-fast mode, add the following to your Spring Boot configuration:</p><pre>@Configuration<br>public class ValidatorConfig {<br><br>    @Bean<br>    public Validator validator() {<br>        ValidatorFactory validatorFactory = Validation.byProvider(HibernateValidator.class)<br>                .configure()<br>                .addProperty(&quot;hibernate.validator.fail_fast&quot;, &quot;true&quot;)<br>                .buildValidatorFactory();<br>        return validatorFactory.getValidator();<br>    }<br>}</pre><img src="https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=95ff3d6a79ff" width="1" height="1" alt="">

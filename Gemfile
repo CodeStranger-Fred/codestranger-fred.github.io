@@ -6,6 +6,9 @@ gem "jekyll-theme-chirpy", "~> 7.3"
 
 gem "html-proofer", "~> 5.0", group: :test
 
+gem "jekyll-import", git: "https://github.com/sumanmaity112/jekyll-import.git"
+gem "rss", "~> 0.2.9"
+
 platforms :mingw, :x64_mingw, :mswin, :jruby do
   gem "tzinfo", ">= 1", "< 3"
   gem "tzinfo-data"

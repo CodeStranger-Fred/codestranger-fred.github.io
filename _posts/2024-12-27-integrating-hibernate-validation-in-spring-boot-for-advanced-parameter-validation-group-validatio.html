@@ -1,0 +1,11 @@
+---
+layout: post
+title: Integrating Hibernate Validation in Spring Boot for Advanced Parameter Validation — Group
+  Validatio
+tag:
+- hibernate
+- java
+- spring-boot
+---
+
+<h3>Integrating Hibernate Validation in Spring Boot for Advanced Parameter Validation — Group Validation</h3><p>Group validation allows you to apply different validation rules depending on the operation (e.g., creating vs. updating an entity). For example, when creating a new user, you might not need to validate the userId, but when updating the user, you might want to.</p><p><strong>Define Validation Groups:</strong></p><pre>public interface GroupA {}<br>public interface GroupB {}</pre><pre>public class Person {</pre><pre>    @NotBlank(groups = GroupA.class)<br>    private Integer userId; // User ID</pre><pre>    @NotBlank(groups = GroupB.class)<br>    private String username; // Username</pre><pre>    @Range(min = 0, max = 100, groups = GroupB.class)<br>    private Integer age; // Age</pre><pre>    @NotNull(groups = GroupA.class)<br>    private String address; // Address<br>}</pre><p><strong>Applying Group Validation:</strong></p><pre>@PostMapping(&quot;/createuser&quot;)<br>public String createUser(@Validated(GroupA.class) Person person, BindingResult bindingResult) {<br>    if (bindingResult.hasErrors()) {<br>        return bindingResult.getFieldError().getDefaultMessage();<br>    }<br>    // Proceed with user creation<br>    return &quot;User created&quot;;<br>}</pre><p>This way, the validation is group-specific, and you can control what gets validated based on the action (e.g., create or update).</p><img src="https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=9fe369ed51ec" width="1" height="1" alt="">
